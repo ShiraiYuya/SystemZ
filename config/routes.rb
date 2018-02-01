@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'users/index'
   get '/users/index'
+  post 'users/index' => 'users/index'
   root to:'users#index'
 end
 
