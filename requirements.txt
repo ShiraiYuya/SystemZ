@@ -1,3 +1,4 @@
+setuptools==38.4.0
 numpy==1.13.3
 scikit-learn==0.19.1
 scipy==1.0.0
