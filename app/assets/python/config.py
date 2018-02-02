@@ -27,9 +27,8 @@ db = 'heroku_622e230d8e4a01a'
 '''
 
 #MySQL (systemz-pred)
-'''
+
 user = 'ba94c84892d89c'
 host = 'us-cdbr-iron-east-05.cleardb.net'
 passwd = '670196d6'
 db = 'heroku_8371934ade8df10'
-'''
