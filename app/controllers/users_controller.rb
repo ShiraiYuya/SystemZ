@@ -1,6 +1,7 @@
 require 'roo-xls'
 require 'open3'
 
+
 class UsersController < ApplicationController
   def index
 	#1→日曜/祝日/エラー(グラフのみ表示)，2→is_defが必要(excelフォームとグラフのみ出現)，
