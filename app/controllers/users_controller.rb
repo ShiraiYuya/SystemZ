@@ -242,7 +242,7 @@ class UsersController < ApplicationController
 	out, err, status = Open3.capture3("cd app/assets/python;"+"python predict_daybyday.py "+sdstring+";"+"cd ../../../;", :stdin_data=>"foo\nbar\nbaz\n")
 	out = out.gsub(/(\n|\[)/,"").gsub(/(\])/,",").split(",")
 	out = out.map(&:to_f)
-	return(err) if err != ""
+	return(status) if err != ""
 	return(out.to_s) if out.length != 21
 	
 	#受け取りは各日の予測出荷量（f,z,other別）：月から日まで

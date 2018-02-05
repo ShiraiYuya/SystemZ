@@ -11,6 +11,8 @@ import config
 import mysql.connector
 import sys
 
+sys.setrecursionlimit(50000)
+
 dbcon = mysql.connector.connect(
 database=config.db, 
 user=config.user, 
