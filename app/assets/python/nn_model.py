@@ -5,15 +5,17 @@ NNを学習させるプログラム
 ・逐次学習(←毎週土曜日就業後？に更新)
 """
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+import sys
 import func
 import datetime as dt
 from datetime import date
 import numpy as np
-import tensorflow as tf
 from sklearn.utils import shuffle
-import os
-import sys
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+import tensorflow as tf
+
 
 rng = np.random.RandomState(724)
 random_state = 1119

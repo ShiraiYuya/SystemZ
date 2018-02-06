@@ -4,11 +4,11 @@
 ・NNを更新する
 ・翌週以降の予測を出力する
 """
-import func
-import nn_model
+import sys
 import datetime as dt
 from datetime import date
-import sys
+import func
+import nn_model
 
 predict_week_num = 2
 

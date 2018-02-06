@@ -12,11 +12,10 @@
 ・曜日ごとへの振り分け
 ・NN確認用データセット
 """
-
-import numpy as np
-from scipy import stats
 import datetime as dt
 from datetime import date
+import numpy as np
+from scipy import stats
 import config
 import mysql.connector
 

@@ -3,13 +3,13 @@
 月曜朝(4時)～金曜朝(4時)に実行すべきもの
 予測を更新する
 """
+import sys
 import func
-import predict_week
 import datetime as dt
 from datetime import date
+import predict_week
 import config
 import mysql.connector
-import sys
 
 sys.setrecursionlimit(50000)
 
