@@ -4,6 +4,7 @@
 ・上の値と、相関から得られた値を元に調整する関数
 weeksumに該当月曜日の日付を入力するとnnによる予測値を出力
 """
+import pdb
 import func
 import datetime as dt
 from datetime import date
@@ -29,6 +30,7 @@ class Dense:
 
 
 def weeksum(predict_day, predict_week_num=1, name="F"):
+    pdb.set_trace()
     idou_week_n = 5
     kaiki_week_n = 15
     mid=30
@@ -103,6 +105,7 @@ def weeksum(predict_day, predict_week_num=1, name="F"):
 
 #トレンド値とNNによる休日補正による予測値と相関係数による予測値を調整する
 def pred_week(predict_day, name="F"):#NN値,補正値,曜日,相関値
+    pdb.set_trace()
     wd=predict_day.weekday()
     target_monday=predict_day-dt.timedelta(days=wd)
     mix_rate=[0.258977993,0.419160883,0.623406712,0.770452391,0.886324529,1]

@@ -5,12 +5,14 @@
 """
 import sys
 import func
+import pdb
 import datetime as dt
 from datetime import date
 import predict_week
 import config
 import mysql.connector
 
+pdb.set_trace()
 sys.setrecursionlimit(50000)
 
 dbcon = mysql.connector.connect(
@@ -59,6 +61,7 @@ def predict_dbd(target_day=date.today()):
         
 if __name__ == "__main__":
     args = sys.argv
+    pdb.set_trace()
     if len(args)==4:
         learn_day=date(int(args[1]),int(args[2]),int(args[3]))
     else:
