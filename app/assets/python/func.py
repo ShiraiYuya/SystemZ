@@ -12,7 +12,6 @@
 ・曜日ごとへの振り分け
 ・NN確認用データセット
 """
-import pdb
 import datetime as dt
 from datetime import date
 import mysql.connector
@@ -68,7 +67,6 @@ def kaiki(X,y,X_pred):#X,yに関してモデルを生成しX_predに対して出
 
 #フーバー回帰の繰り返し最小二乗アルゴリズムに基づいた直線回帰によるトレンド値の取得
 def make_trend(name, b_weeks, max_day, num, a_weeks=0, rate=None):
-    pdb.set_trace()
     target_day=date(2015, 4, 6)
     raw_datas=[]
     dates=[]
@@ -127,7 +125,6 @@ def make_trend(name, b_weeks, max_day, num, a_weeks=0, rate=None):
 
 #移動平均を用いたトレンド値の取得
 def make_trend_idou(name, n_weeks, max_day, rate=None):
-    pdb.set_trace()
     target_day=date(2015, 4, 6)
     raw_datas=[]
     dates=[]
@@ -210,7 +207,6 @@ def special_rate(target_day):
 
 #相関を見るためのデータセット生成
 def make_soukan(max_day, name="f"):
-    pdb.set_trace()
     wd=max_day.weekday()
     target_day_f=date(2015, 4, 6)
     target_day_t=target_day_f+dt.timedelta(days=wd)
@@ -257,7 +253,6 @@ def make_soukan(max_day, name="f"):
 
 #相関に基づいた週sum予測値の取得
 def predict_soukan(target_day,name="f",num=None):#numはこちらから与えることも可能(リアルタイムではこちら？)
-    pdb.set_trace()
     if num is None:
         wd=target_day.weekday()
         target_day_t=target_day
@@ -276,7 +271,6 @@ def predict_soukan(target_day,name="f",num=None):#numはこちらから与える
 
 #曜日ごとへの振り分け
 def weeksum_day(max_day, num, name="f"):
-    pdb.set_trace()
     wd=(max_day+dt.timedelta(days=1)).weekday()#wdを含み以降の日を対象にする
     col_name=name+"_ship"
     target_day = date(2015, 4, 6)
