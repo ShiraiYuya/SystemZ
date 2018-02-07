@@ -11,7 +11,6 @@ import config
 import func
 import predict_week
 
-sys.setrecursionlimit(50000)
 
 dbcon = mysql.connector.connect(
 database=config.db, 

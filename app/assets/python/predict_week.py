@@ -4,6 +4,8 @@
 ・上の値と、相関から得られた値を元に調整する関数
 weeksumに該当月曜日の日付を入力するとnnによる予測値を出力
 """
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import datetime as dt
 from datetime import date
 import numpy as np
