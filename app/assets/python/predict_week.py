@@ -5,6 +5,9 @@
 weeksumに該当月曜日の日付を入力するとnnによる予測値を出力
 """
 import pdb
+import datetime as dt
+from datetime import date
+import numpy as np
 import func
 import tensorflow as tf
 

@@ -4,6 +4,10 @@
 予測を更新する
 """
 import sys
+import datetime as dt
+from datetime import date
+import mysql.connector
+import config
 import func
 import predict_week
 

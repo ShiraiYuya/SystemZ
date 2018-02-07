@@ -5,6 +5,8 @@
 ・翌週以降の予測を出力する
 """
 import sys
+import datetime as dt
+from datetime import date
 import func
 import nn_model
 

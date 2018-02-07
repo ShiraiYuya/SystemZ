@@ -8,7 +8,10 @@ NNを学習させるプログラム
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import sys
+import datetime as dt
+from datetime import date
 import func
+import numpy as np
 from sklearn.utils import shuffle
 import tensorflow as tf
 
