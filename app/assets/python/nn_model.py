@@ -9,11 +9,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import sys
 import func
-import datetime as dt
-from datetime import date
-import numpy as np
 from sklearn.utils import shuffle
-
 import tensorflow as tf
 
 

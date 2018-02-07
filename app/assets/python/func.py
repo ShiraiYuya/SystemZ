@@ -15,10 +15,11 @@
 import pdb
 import datetime as dt
 from datetime import date
+import mysql.connector
+import config
 import numpy as np
 from scipy import stats
-import config
-import mysql.connector
+
 
 dbcon = mysql.connector.connect(
 database=config.db, 

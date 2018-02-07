@@ -5,12 +5,7 @@
 """
 import sys
 import func
-import pdb
-import datetime as dt
-from datetime import date
 import predict_week
-import config
-import mysql.connector
 
 pdb.set_trace()
 sys.setrecursionlimit(50000)

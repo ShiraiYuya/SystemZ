@@ -6,10 +6,6 @@ weeksumに該当月曜日の日付を入力するとnnによる予測値を出�
 """
 import pdb
 import func
-import datetime as dt
-from datetime import date
-import numpy as np
-import matplotlib
 import tensorflow as tf
 
 rng = np.random.RandomState(724)
