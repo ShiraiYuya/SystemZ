@@ -9,6 +9,17 @@ import datetime as dt
 from datetime import date
 import func
 import nn_model
+import mysql.connector
+import config
+
+
+dbcon = mysql.connector.connect(
+database=config.db, 
+user=config.user, 
+password=config.passwd, 
+host=config.host,
+buffered=True)
+dbcur = dbcon.cursor()
 
 predict_week_num = 2
 
@@ -32,6 +43,36 @@ def predict_n(target_day=date.today()):
             we.append(0)
             pred.append(we)
         preds.append(pred)
+    #week_dataの更新
+    target_monday=target_day-dt.timedelta(days=wd)
+    weight_each = [0, target_monday]
+    names = ["f","z","other"]
+    for name in names:
+        for wd in range(6):
+            target_day_t = target_monday+dt.timedelta(days=wd)
+            col_name=name+"_ship"
+            dbcur.execute("SELECT SUM("+col_name+") FROM amounts WHERE date>=%s AND date<%s" 
+                          ,(target_monday,target_day_t))
+            wd_weight_1 = dbcur.fetchone()[0]
+            if wd_weight_1 is None:
+                wd_weight_1 = 0
+            col_name=name+"_morn"
+            dbcur.execute("SELECT SUM("+col_name+") FROM amounts WHERE date=%s" 
+                          ,(target_day_t,))
+            wd_weight_2 = dbcur.fetchone()[0]
+            if wd_weight_2 is None:
+                wd_weight_2 = 0
+            weight_each.append(wd_weight_1 + wd_weight_2)
+        col_name=name+"_ship"
+        dbcur.execute("SELECT SUM("+col_name+") FROM amounts WHERE date>=%s AND date<%s" 
+                      ,(target_monday,target_monday+dt.timedelta(days=7)))
+        total_weight=dbcur.fetchone()[0]
+        if total_weight is None:
+            total_weight=0
+        weight_each.append(total_weight)
+    dbcur.execute("INSERT INTO week_data VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s," 
+                  "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",weight_each)
+
     return preds        
         
         

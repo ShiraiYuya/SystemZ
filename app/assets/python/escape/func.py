@@ -209,22 +209,38 @@ def special_rate(target_day):
 def make_soukan(max_day, name="f"):
     wd=max_day.weekday()
     target_day_f=date(2015, 4, 6)
-    target_day_t=max_day-dt.timedelta(days=wd)
+    target_day_t=target_day_f+dt.timedelta(days=wd)
+    dates=[]
     X=[]
     y=[]
     z=[]
-    col_name=name+"_"+str(wd)+"_morn,"+name+"_week"
-    dbcur.execute("SELECT "+col_name+" FROM week_data WHERE monday>=%s AND monday<%s" 
-                  ,(target_day_f,target_day_t))
-    for row in dbcur.fetchall():
-        wd_weight = row[0]
-        total_weight = row[1]
+    while target_day_t<max_day:
+        col_name=name+"_ship"
+        dbcur.execute("SELECT SUM("+col_name+") FROM amounts WHERE date>=%s AND date<%s" 
+                      ,(target_day_f,target_day_t))
+        wd_weight_1 = dbcur.fetchone()[0]
+        if wd_weight_1 is None:
+            wd_weight_1 = 0
+        col_name=name+"_morn"
+        dbcur.execute("SELECT SUM("+col_name+") FROM amounts WHERE date=%s" 
+                      ,(target_day_t,))
+        wd_weight_2 = dbcur.fetchone()[0]
+        if wd_weight_2 is None:
+            wd_weight_2 = 0
+        wd_weight = wd_weight_1 + wd_weight_2
+        col_name=name+"_ship"
+        dbcur.execute("SELECT SUM("+col_name+") FROM amounts WHERE date>=%s AND date<%s" 
+                      ,(target_day_f,target_day_f+dt.timedelta(days=7)))
+        total_weight=dbcur.fetchone()[0]
         if total_weight is None:
             total_weight=0
         if total_weight!=0:
+            dates.append(target_day_t)
             X.append(wd_weight)
             y.append(total_weight)
             z.append(wd_weight/total_weight)
+        target_day_f+=dt.timedelta(days=7)
+        target_day_t+=dt.timedelta(days=7)
     z=np.array(z)
     z=(z-np.mean(z))/np.std(z)
     return_X=[]
